@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercy Luxe | Premium Beauty, Lashes, Nails & Jewelry</title>
+    
+    <!-- Tailwind CSS & Fonts via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- React via CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-900">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // --- HEADER COMPONENT ---
+        function Header({ setPage }) {
+            return (
+                <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-200">
+                    <div className="bg-stone-900 text-stone-300 text-xs py-2 px-4 text-center tracking-wide">
+                        <span className="hidden sm:inline">Call us: </span>
+                        <a href="tel:+2349133202213" className="hover:text-amber-200 transition-colors font-medium">0913 320 2213</a>
+                        <span className="mx-2 hidden sm:inline">|</span>
+                        <span className="hidden sm:inline">WhatsApp: </span>
+                        <a href="https://wa.me/2349060978714" target="_blank" rel="noopener noreferrer" className="hover:text-amber-200 transition-colors font-medium">0906 097 8714</a>
+                    </div>
+                    <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex justify-between items-center h-20">
+                            <button onClick={() => setPage('home')} className="flex items-center">
+                                <h1 className="text-2xl md:text-3xl font-serif text-stone-900 tracking-tight">
+                                    Mercy <span className="text-amber-700">Luxe</span>
+                                </h1>
+                            </button>
+                            <div className="hidden md:flex items-center space-x-8">
+                                <button onClick={() => setPage('home')} className="text-sm uppercase tracking-widest text-stone-700 hover:text-amber-700 transition-colors">Home</button>
+                                <button onClick={() => setPage('shop')} className="text-sm uppercase tracking-widest text-stone-700 hover:text-amber-700 transition-colors">Shop</button>
+                                <button onClick={() => setPage('wholesale')} className="text-sm uppercase tracking-widest text-stone-700 hover:text-amber-700 transition-colors">Wholesale</button>
+                            </div>
+                            <button onClick={() => setPage('shop')} className="md:hidden text-sm uppercase tracking-widest text-stone-700 hover:text-amber-700">Shop</button>
+                        </div>
+                    </nav>
+                </header>
+            );
+        }
+
+        // --- HERO COMPONENT ---
+        function Hero({ setPage }) {
+            return (
+                <section className="relative h-[80vh] w-full flex items-center justify-center bg-stone-900 text-white overflow-hidden">
+                    <div className="absolute inset-0 bg-black/50 z-10" />
+                    <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=1920&q=80" alt="Beauty Hero" className="absolute inset-0 w-full h-full object-cover" />
+                    <div className="relative z-20 text-center px-4 max-w-4xl">
+                        <h1 className="text-5xl md:text-7xl font-serif tracking-tight mb-4">Elevate Your Artistry</h1>
+                        <p className="text-lg md:text-xl font-light max-w-2xl mx-auto text-stone-200 mb-8">
+                            Premium lashes, flawless nails, exquisite jewelry, and cosmetics. 
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button onClick={() => setPage('shop')} className="px-8 py-3 bg-white text-stone-900 font-medium uppercase text-sm tracking-widest hover:bg-amber-100 transition-colors">Shop Now</button>
+                            <button onClick={() => setPage('wholesale')} className="px-8 py-3 border border-white text-white font-medium uppercase text-sm tracking-widest hover:bg-white hover:text-stone-900 transition-colors">Wholesale</button>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // --- CATEGORIES COMPONENT ---
+        function Categories({ setPage }) {
+            const cats = [
+                { name: 'Lashes', img: 'https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=600&q=80' },
+                { name: 'Nails', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=80' },
+                { name: 'Jewelry', img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80' },
+                { name: 'Makeup', img: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80' },
+            ];
+            return (
+                <section className="py-20 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h2 className="text-3xl md:text-4xl font-serif text-center text-stone-900 tracking-tight mb-12">Our Collections</h2>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            {cats.map((cat) => (
+                                <div key={cat.name} onClick={() => setPage('shop')} className="relative group h-64 rounded-sm overflow-hidden cursor-pointer">
+                                    <img src={cat.img} alt={cat.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                                        <h3 className="text-2xl font-serif text-white tracking-widest uppercase">{cat.name}</h3>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // --- PRODUCT GRID COMPONENT ---
+        function ProductGrid() {
+            const products = [
+                { id: 1, name: 'Mink Volume Lashes', category: 'LASHES', price: 24000, img: 'https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80' },
+                { id: 2, name: '18K Gold Layered Necklace', category: 'JEWELRY', price: 85000, img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80' },
+                { id: 3, name: 'Chrome French Tip Press-ons', category: 'NAILS', price: 18000, img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=80' },
+                { id: 4, name: 'Velvet Matte Lip Kit', category: 'MAKEUP', price: 45000, img: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80' },
+                { id: 5, name: 'Dramatic Wispy Lashes', category: 'LASHES', price: 22000, img: 'https://images.unsplash.com/photo-1583241800698-e8ab01830a07?auto=format&fit=crop&w=800&q=80' },
+                { id: 6, name: 'Pearl Drop Earrings', category: 'JEWELRY', price: 55000, img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80' },
+                { id: 7, name: 'Almond Shape Gel Nails', category: 'NAILS', price: 20000, img: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=80' },
+                { id: 8, name: 'Glow Foundation & Concealer', category: 'MAKEUP', price: 60000, img: 'https://images.unsplash.com/photo-1557205465-f3762edea6d7?auto=format&fit=crop&w=800&q=80' },
+            ];
+
+            return (
+                <section className="bg-stone-50 py-20 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-7xl mx-auto text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-serif text-stone-900 tracking-tight">The Collection</h2>
+                        <div className="mt-4 w-16 h-[1px] bg-amber-700 mx-auto"></div>
+                    </div>
+                    <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {products.map((product) => (
+                            <div key={product.id} className="group block cursor-pointer">
+                                <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-stone-100">
+                                    <img src={product.img} alt={product.name} className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" />
+                                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                                        <span className="text-[10px] uppercase tracking-widest text-stone-800 font-medium">{product.category}</span>
+                                    </div>
+                                </div>
+                                <div className="mt-4 flex justify-between items-start">
+                                    <h3 className="text-sm font-medium text-stone-900 group-hover:text-amber-700 transition-colors">{product.name}</h3>
+                                    <p className="text-sm font-medium text-stone-900">₦{product.price.toLocaleString()}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            );
+        }
+
+        // --- WHOLESALE FORM COMPONENT ---
+        function WholesaleForm() {
+            const [submitted, setSubmitted] = useState(false);
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                setSubmitted(true);
+            };
+
+            if (submitted) {
+                return (
+                    <div className="min-h-screen bg-stone-50 flex items-center justify-center px-4 py-20">
+                        <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-sm border border-stone-200 text-center">
+                            <div className="mx-auto h-16 w-16 text-green-500 mb-4 flex items-center justify-center text-4xl">✓</div>
+                            <h1 className="text-2xl font-serif text-stone-900 mb-2">Application Received!</h1>
+                            <p className="text-stone-600 mb-6">Thank you for applying to the Mercy Luxe Wholesale program. We will review your details and get back to you within 24-48 hours.</p>
+                            <a href="https://wa.me/2349060978714" target="_blank" className="inline-block px-6 py-2 border border-stone-300 text-stone-700 rounded-md hover:bg-stone-100 transition-colors text-sm uppercase tracking-wide">Chat on WhatsApp</a>
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="min-h-screen bg-stone-50 py-16 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-3xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h1 className="text-4xl font-serif text-stone-900 tracking-tight">Wholesale Partnership</h1>
+                            <p className="mt-4 text-lg text-stone-600 font-light max-w-xl mx-auto">Bring Mercy Luxe premium beauty products to your salon or boutique. Approvals typically take 24-48 hours.</p>
+                        </div>
+                        <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-lg shadow-sm border border-stone-200 space-y-8">
+                            <div>
+                                <h2 className="text-lg font-medium text-stone-900 mb-4 border-b border-stone-100 pb-2">Contact Information</h2>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <InputField label="Full Name" name="fullName" required />
+                                    <InputField label="Business Email" name="email" type="email" required />
+                                    <InputField label="Phone Number" name="phone" type="tel" required placeholder="e.g. 08012345678" />
+                                </div>
+                            </div>
+                            <div>
+                                <h2 className="text-lg font-medium text-stone-900 mb-4 border-b border-stone-100 pb-2">Business Details</h2>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <InputField label="Business / Salon Name" name="businessName" required />
+                                    <div>
+                                        <label className="block text-sm font-medium text-stone-700 mb-1">Business Type</label>
+                                        <select name="businessType" required className="block w-full rounded-md border-stone-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm p-2 border">
+                                            <option value="">Select type...</option>
+                                            <option value="Beauty Salon">Beauty Salon</option>
+                                            <option value="Nail Spa">Nail Spa</option>
+                                            <option value="Retail Boutique">Retail Boutique</option>
+                                            <option value="Makeup Artist">Freelance Makeup Artist</option>
+                                        </select>
+                                    </div>
+                                    <InputField label="Instagram Handle" name="instagram" placeholder="@yourbusiness" />
+                                </div>
+                            </div>
+                            <div className="pt-4">
+                                <button type="submit" className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-stone-900 hover:bg-amber-700 transition-colors uppercase tracking-widest">Submit Application</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            );
+        }
+
+        function InputField({ label, name, type = "text", required = false, placeholder = "" }) {
+            return (
+                <div>
+                    <label htmlFor={name} className="block text-sm font-medium text-stone-700 mb-1">{label} {required && <span className="text-rose-500">*</span>}</label>
+                    <input type={type} name={name} id={name} required={required} placeholder={placeholder} className="block w-full rounded-md border-stone-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm p-2 border" />
+                </div>
+            );
+        }
+
+        // --- FOOTER COMPONENT ---
+        function Footer() {
+            return (
+                <footer className="bg-stone-900 text-stone-300 pt-16 pb-8">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                            <div className="md:col-span-2">
+                                <h2 className="text-3xl font-serif text-white tracking-tight mb-4">Mercy <span className="text-amber-500">Luxe</span></h2>
+                                <p className="text-stone-400 max-w-md leading-relaxed mb-6">Elevating your everyday beauty with premium lashes, flawless nails, exquisite jewelry, and high-end makeup accessories.</p>
+                            </div>
+                            <div>
+                                <h3 className="text-white text-sm uppercase tracking-widest mb-4">Shop</h3>
+                                <ul className="space-y-3 text-sm">
+                                    <li><a href="#" className="hover:text-amber-500 transition-colors">Premium Lashes</a></li>
+                                    <li><a href="#" className="hover:text-amber-500 transition-colors">Press-on Nails</a></li>
+                                    <li><a href="#" className="hover:text-amber-500 transition-colors">Jewelry & Accessories</a></li>
+                                    <li><a href="#" className="hover:text-amber-500 transition-colors">Makeup Essentials</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="text-white text-sm uppercase tracking-widest mb-4">Contact Us</h3>
+                                <ul className="space-y-3 text-sm">
+                                    <li className="flex items-center gap-2"><span className="text-amber-500">📞</span><a href="tel:+2349133202213" className="hover:text-amber-500 transition-colors">0913 320 2213</a></li>
+                                    <li className="flex items-center gap-2"><span className="text-amber-500">💬</span><a href="https://wa.me/2349060978714" target="_blank" className="hover:text-amber-500 transition-colors">0906 097 8714</a></li>
+                                    <li className="flex items-center gap-2"><span className="text-amber-500">✉️</span><a href="mailto:hello@mercyluxe.com" className="hover:text-amber-500 transition-colors">hello@mercyluxe.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="border-t border-stone-800 pt-8 text-center text-xs text-stone-500">&copy; 2026 Mercy Luxe. All rights reserved.</div>
+                    </div>
+                </footer>
+            );
+        }
+
+        // --- WHATSAPP BUTTON COMPONENT ---
+        function WhatsAppButton() {
+            return (
+                <a href="https://wa.me/2349060978714?text=Hello%20Mercy%20Luxe!%20I%20would%20like%20to%20make%20an%20inquiry." target="_blank" rel="noopener noreferrer" className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg transition-all duration-300 hover:scale-110 group" aria-label="Chat on WhatsApp">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="32" height="32" fill="white">
+                        <path d="M22 0C9.85 0 0 9.85 0 22c0 3.91 1.02 7.59 2.82 10.78L0 44l11.5-2.99C14.56 42.85 18.14 44 22 44c12.15 0 22-9.85 22-22S34.15 0 22 0zm0 40c-3.52 0-6.82-1.05-9.56-2.85l-.69-.45-7.15 1.86 1.9-6.97-.45-.71C4.13 28.28 3 25.24 3 22 3 11.52 11.52 3 22 3s19 8.52 19 19-8.52 19-19 19zm10.5-13.5c-.58-.29-3.42-1.68-3.95-1.87-.53-.19-.92-.29-1.3.29-.38.58-1.48 1.87-1.82 2.25-.33.38-.67.43-1.25.14-.58-.29-2.45-.9-4.67-2.88-1.72-1.53-2.88-3.43-3.22-4.01-.33-.58-.04-.89.25-1.18.26-.26.58-.67.87-1 .29-.33.38-.58.58-.96.19-.38.1-.71-.05-1-.14-.29-1.3-3.13-1.78-4.29-.47-1.12-.95-.97-1.3-.99l-1.12-.02c-.38 0-1 .14-1.53.71-.53.58-2.03 1.98-2.03 4.83 0 2.85 2.08 5.61 2.37 6 .29.38 4.08 6.23 9.87 8.73 1.38.6 2.45.96 3.29 1.23 1.38.44 2.64.38 3.63.23 1.11-.16 3.42-1.4 3.9-2.74.48-1.34.48-2.49.33-2.74-.14-.25-.53-.38-1.11-.67z"/>
+                    </svg>
+                    <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-stone-900 text-white text-xs px-3 py-2 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Chat with Mercy Luxe</span>
+                </a>
+            );
+        }
+
+        // --- MAIN APP COMPONENT ---
+        function App() {
+            const [page, setPage] = useState('home');
+
+            const renderPage = () => {
+                switch(page) {
+                    case 'shop': return <><Hero setPage={setPage} /><ProductGrid /></>;
+                    case 'wholesale': return <WholesaleForm />;
+                    default: return <><Hero setPage={setPage} /><Categories setPage={setPage} /><ProductGrid /></>;
+                }
+            };
+
+            return (
+                <>
+                    <Header setPage={setPage} />
+                    {renderPage()}
+                    <Footer />
+                    <WhatsAppButton />
+                </>
+            );
+        }
+
+        // Render the App to the HTML root
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
